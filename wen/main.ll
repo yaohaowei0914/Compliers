@@ -29,7 +29,7 @@ define dso_local i32 @main() #0 {
   %13 = load i32, ptr %4, align 4
   %14 = load i32, ptr %6, align 4
   %15 = icmp slt i32 %13, %14
-  br i1 %15, label %16, label %26
+  br i1 %15, label %16, label %24
 
 16:                                               ; preds = %12
   %17 = load i32, ptr %3, align 4
@@ -38,16 +38,17 @@ define dso_local i32 @main() #0 {
   %19 = load i32, ptr %3, align 4
   %20 = add nsw i32 %18, %19
   store i32 %20, ptr %3, align 4
-  %21 = load i32, ptr %3, align 4
-  %22 = call i32 (ptr, ...) @printf(ptr noundef @.str.1, i32 noundef %21)
-  %23 = load i32, ptr %5, align 4
-  store i32 %23, ptr %2, align 4
-  %24 = load i32, ptr %4, align 4
-  %25 = add nsw i32 %24, 1
-  store i32 %25, ptr %4, align 4
+  %21 = load i32, ptr %5, align 4
+  store i32 %21, ptr %2, align 4
+  %22 = load i32, ptr %4, align 4
+  %23 = add nsw i32 %22, 1
+  store i32 %23, ptr %4, align 4
   br label %12, !llvm.loop !6
 
-26:                                               ; preds = %12
+24:                                               ; preds = %12
+  %25 = load i32, ptr %3, align 4
+  %26 = add nsw i32 %25, 3
+  %27 = call i32 (ptr, ...) @printf(ptr noundef @.str.1, i32 noundef %26)
   ret i32 0
 }
 
