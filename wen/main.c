@@ -32,15 +32,9 @@ int main() {
     while (i < n) {
         t = b;
         b = a + b;
+        
+        printf("%d\n", b);  // 打印所有项
 
-
-        #ifdef PRINT_ALL
-            printf("%d\n", b);  // 打印所有项
-        #elif defined(PRINT_EVEN)
-            if (b % 2 == 0) {
-                printf("%d\n", b);  // 仅打印偶数项
-            }
-        #endif
         a = t;
         i = i + 1;
     }
