@@ -16,10 +16,10 @@ bubbleSort:
 	sw	a5,-44(s0)
 	sw	zero,-20(s0)
 	j	.L2
-.L6:
-	sw	zero,-24(s0)
+.L6: 		#L_outer_loop
+	sw	zero,-24(s0) # j = 0
 	j	.L3
-.L5:
+.L5:       	#L_inner_loop
 	lw	a5,-24(s0)
 	slli	a5,a5,2
 	ld	a4,-40(s0)
@@ -57,11 +57,11 @@ bubbleSort:
 	add	a5,a4,a5
 	lw	a4,-28(s0)
 	sw	a4,0(a5)
-.L4:
+.L4: #L_no_swap:
 	lw	a5,-24(s0)
 	addiw	a5,a5,1
 	sw	a5,-24(s0)
-.L3:
+.L3: #L_inner_cond:
 	lw	a5,-44(s0)
 	mv	a4,a5
 	lw	a5,-20(s0)
@@ -75,7 +75,7 @@ bubbleSort:
 	lw	a5,-20(s0)
 	addiw	a5,a5,1
 	sw	a5,-20(s0)
-.L2:
+.L2: #.L_outer_cond:
 	lw	a5,-44(s0)
 	addiw	a5,a5,-1
 	sext.w	a4,a5
@@ -106,7 +106,7 @@ printArray:
 	sw	a5,-44(s0)
 	sw	zero,-20(s0)
 	j	.L8
-.L9:
+.L9: #.L_print_loop:
 	lw	a5,-20(s0)
 	slli	a5,a5,2
 	ld	a4,-40(s0)
@@ -119,7 +119,7 @@ printArray:
 	lw	a5,-20(s0)
 	addiw	a5,a5,1
 	sw	a5,-20(s0)
-.L8:
+.L8: #.L_print_cond:
 	lw	a5,-20(s0)
 	mv	a4,a5
 	lw	a5,-44(s0)
